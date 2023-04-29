@@ -7,4 +7,17 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="red">#FFCB3A31</color>
+    <color name="neutral_30">#FFEDEDED</color>
+    <color name="blue_aqua">#FF4CC4DC</color>
+    <color name="blue_sea">#FF216A78</color>
+    <color name="green">#FF43936C</color>
+    <color name="blue">#FF43936C</color>
+    <color name="blue_navy">#FF0F172A</color>
+    <color name="grey_text">#FF626262</color>
+    <color name="yellow_1">#FFCD7B2E</color>
+    <color name="yellow_2">#FFBF6919</color>
+    <color name="yellow_3">#FF734011</color>
+
 </resources>

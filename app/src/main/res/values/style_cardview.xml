@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BaseCardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">@dimen/dimen_10dp</item>
+        <item name="cardElevation">@dimen/dimen_5dp</item>
+        <item name="cardBackgroundColor">@color/white</item>
+    </style>
+
+</resources>
