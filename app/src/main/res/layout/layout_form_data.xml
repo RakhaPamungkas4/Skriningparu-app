@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen_16dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/BaseTextView.Lato.Grey"
+        android:text="@string/label_full_name"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etFullName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionNext"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/BaseTextView.Lato.Grey"
+        android:text="@string/label_gender"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etGender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionNext"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/BaseTextView.Lato.Grey"
+        android:text="@string/label_phone_number"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:imeOptions="actionDone"/>
+
+</LinearLayout>

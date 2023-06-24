@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">SkriningParu</string>
+    <string name="label_agree">Ya, Saya Setuju</string>
+    <string name="action_accept">Setuju</string>
+    <string name="action_back">Kembali</string>
+    <string name="title_input_personal_data">Masukkan Data Diri</string>
+    <string name="label_full_name">Nama Lengkap (Sesuai KTP)</string>
+    <string name="label_gender">Jenis Kelamin</string>
+    <string name="label_phone_number">Nomor HP</string>
+    <string name="title_consent_sheet">Consent Sheet</string>
+    <string name="title_screening_data">Screening Data</string>
+    <string name="title_advance_screening">Screening Lanjutan</string>
+    <string name="title_personal_data">Identitas Diri</string>
+    <string name="action_start">Mulai</string>
 </resources>

@@ -10,10 +10,10 @@
 
     <color name="red">#FFCB3A31</color>
     <color name="neutral_30">#FFEDEDED</color>
+    <color name="neutral_60">#FF9E9E9E</color>
     <color name="blue_aqua">#FF4CC4DC</color>
     <color name="blue_sea">#FF216A78</color>
     <color name="green">#FF43936C</color>
-    <color name="blue">#FF43936C</color>
     <color name="blue_navy">#FF0F172A</color>
     <color name="grey_text">#FF626262</color>
     <color name="yellow_1">#FFCD7B2E</color>

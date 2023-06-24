@@ -18,4 +18,9 @@
         <item name="android:insetBottom">@dimen/dimen_0dp</item>
         <item name="android:insetLeft">@dimen/dimen_0dp</item>
     </style>
+
+    <style name="BaseButton.Primary">
+        <item name="backgroundTint">@color/selector_default_color_button</item>
+        <item name="android:textColor">@color/selector_default_color_text_button</item>
+    </style>
 </resources>

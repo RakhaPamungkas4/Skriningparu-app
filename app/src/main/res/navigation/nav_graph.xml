@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/consentSheetFragment">
+
+    <fragment
+        android:id="@+id/consentSheetFragment"
+        android:name="com.rakul.skriningparu.ui.fragment.ConsentSheetFragment"
+        android:label="@string/title_consent_sheet"
+        tools:layout="@layout/fragment_consent_sheet">
+        <action
+            android:id="@+id/action_consentSheetFragment_to_screeningFragment"
+            app:destination="@+id/screeningFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/screeningFragment"
+        android:name="com.rakul.skriningparu.ui.fragment.ScreeningFragment"
+        android:label="@string/title_screening_data"
+        tools:layout="@layout/fragment_screening">
+        <action
+            android:id="@+id/action_screeningFragment_to_screeningIdentityFragment"
+            app:destination="@+id/screeningIdentityFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/screeningIdentityFragment"
+        android:name="com.rakul.skriningparu.ui.fragment.PersonalDataFragment"
+        android:label="@string/title_personal_data"
+        tools:layout="@layout/fragment_personal_data">
+        <action
+            android:id="@+id/action_screeningIdentityFragment_to_screeningAdvanceFragment"
+            app:destination="@+id/screeningAdvanceFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/screeningAdvanceFragment"
+        android:name="com.rakul.skriningparu.ui.fragment.ScreeningScreenFragment"
+        android:label="@string/title_advance_screening"
+        tools:layout="@layout/fragment_screening_screen">
+    </fragment>
+
+</navigation>
