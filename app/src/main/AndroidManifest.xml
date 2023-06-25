@@ -16,8 +16,11 @@
         android:theme="@style/Theme.SkriningParu"
         tools:targetApi="31">
         <activity
+            android:name=".ui.ResultScreeningActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomeActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

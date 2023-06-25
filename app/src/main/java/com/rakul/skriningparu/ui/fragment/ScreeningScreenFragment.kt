@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -15,9 +14,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.rakul.skriningparu.R
-import com.rakul.skriningparu.data.model.request.IdentityRequest
 import com.rakul.skriningparu.data.model.response.ScreeningResponse
 import com.rakul.skriningparu.databinding.FragmentScreeningScreenBinding
+import com.rakul.skriningparu.ui.ResultScreeningActivity
 import com.rakul.skriningparu.ui.viewmodel.MainViewModel
 import com.rakul.skriningparu.ui.viewmodel.UserViewModel
 import com.rakul.skriningparu.utils.dialog.showDialog
@@ -72,7 +71,7 @@ class ScreeningScreenFragment : Fragment() {
             inclLayoutAnswer.inclLayoutDoubleAnswer.btnAnswer1.setOnClickListener {
                 val answer = inclLayoutAnswer.inclLayoutDoubleAnswer.btnAnswer1.text.toString()
                 userViewModel.addUserAnswer(answer)
-                if (index == items.size-1) {
+                if (index == items.size - 1) {
                     showDialog(
                         context = requireContext(),
                         title = "Apakah anda yakin untuk memerika ulang?",
@@ -85,7 +84,7 @@ class ScreeningScreenFragment : Fragment() {
                         index = 0
                         setupUi()
                     }
-                }else{
+                } else {
                     index += 1
                     setupUi()
                 }
@@ -93,7 +92,7 @@ class ScreeningScreenFragment : Fragment() {
             inclLayoutAnswer.inclLayoutDoubleAnswer.btnAnswer2.setOnClickListener {
                 val answer = inclLayoutAnswer.inclLayoutDoubleAnswer.btnAnswer2.text.toString()
                 userViewModel.addUserAnswer(answer)
-                if (index == items.size-1) {
+                if (index == items.size - 1) {
                     showDialog(
                         context = requireContext(),
                         title = "Apakah anda sudah yakin?",
@@ -105,7 +104,7 @@ class ScreeningScreenFragment : Fragment() {
                         pbLoading.showLoading(true)
                         sendDataToFirebase()
                     }
-                }else{
+                } else {
                     index += 1
                     setupUi()
                 }
@@ -185,7 +184,7 @@ class ScreeningScreenFragment : Fragment() {
                 requireContext().showToast("Failed Send Data")
             } else {
                 userViewModel.clearListAnswers()
-                // TODO : Go to Screening Result Page
+                ResultScreeningActivity.start(requireContext())
             }
         }
     }

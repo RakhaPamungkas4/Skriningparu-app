@@ -19,5 +19,6 @@
     <color name="yellow_1">#FFCD7B2E</color>
     <color name="yellow_2">#FFBF6919</color>
     <color name="yellow_3">#FF734011</color>
+    <color name="text_color">#FF2D2D2D</color>
 
 </resources>
