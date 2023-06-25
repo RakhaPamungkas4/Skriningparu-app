@@ -7,33 +7,54 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         style="@style/BaseTextView.Lato.Grey"
-        android:text="@string/label_full_name"/>
+        android:text="@string/label_full_name" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etFullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:imeOptions="actionNext"/>
+        android:imeOptions="actionNext"
+        android:maxLength="100"
+        android:maxLines="1" />
 
     <androidx.appcompat.widget.AppCompatTextView
         style="@style/BaseTextView.Lato.Grey"
-        android:text="@string/label_gender"/>
+        android:text="@string/label_gender" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etGender"
-        android:layout_width="match_parent"
+    <RadioGroup
+        android:id="@+id/rgSex"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:imeOptions="actionNext"/>
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:checked="true"
+            android:text="@string/label_male" />
+
+        <RadioButton
+            android:id="@+id/radioFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:text="@string/label_female" />
+
+    </RadioGroup>
 
     <androidx.appcompat.widget.AppCompatTextView
         style="@style/BaseTextView.Lato.Grey"
-        android:text="@string/label_phone_number"/>
+        android:text="@string/label_phone_number" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
         android:inputType="phone"
-        android:imeOptions="actionDone"/>
+        android:maxLength="20"
+        android:maxLines="1" />
 
 </LinearLayout>

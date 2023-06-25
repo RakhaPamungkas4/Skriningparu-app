@@ -30,7 +30,6 @@ class ConsentSheetFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupObserver()
         setupAction()
-        mainViewModel.screenName = ConsentSheetFragment::class.java.name
     }
 
     private fun setupObserver() {
@@ -50,6 +49,8 @@ class ConsentSheetFragment : Fragment() {
                 val action =
                     ConsentSheetFragmentDirections.actionConsentSheetFragmentToScreeningFragment()
                 button?.findNavController()?.navigate(action)
+                cbAgree.isChecked = false
+                isChecked = false
             }
             cbAgree.setOnClickListener {
                 isChecked = !isChecked

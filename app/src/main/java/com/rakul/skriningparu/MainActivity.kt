@@ -19,7 +19,9 @@ import com.rakul.skriningparu.databinding.ActivityMainBinding
 import com.rakul.skriningparu.ui.fragment.ConsentSheetFragment
 import com.rakul.skriningparu.ui.fragment.PersonalDataFragment
 import com.rakul.skriningparu.ui.fragment.ScreeningFragment
+import com.rakul.skriningparu.ui.fragment.ScreeningScreenFragment
 import com.rakul.skriningparu.ui.viewmodel.MainViewModel
+import com.rakul.skriningparu.utils.dialog.showDialog
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,8 +41,6 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-
-//        setupActionBarWithNavController(navController)
 
         getDataFromFirebase()
     }
@@ -115,13 +115,35 @@ class MainActivity : AppCompatActivity() {
             }
 
             ScreeningFragment::class.java.name -> {
-                Toast.makeText(this@MainActivity, "ScreeningFragment", Toast.LENGTH_SHORT).show()
+                showDialog(
+                    context = this@MainActivity,
+                    title = "Apakah anda yakin keluar?",
+                    message = "Anda belum menyelesaikan test skrining, apakah anda yakin untuk membatalkannya?",
+                    positiveButtonText = "Yakin",
+                    negativeButtonText = "Tidak Yakin",
+                    isShowPositiveButton = true
+                ) {
+                    super.onBackPressed()
+                }
             }
 
             PersonalDataFragment::class.java.name -> {
-                Toast.makeText(this@MainActivity, "PersonalDataFragment", Toast.LENGTH_SHORT).show()
+                super.onBackPressed()
+            }
+
+            ScreeningScreenFragment::class.java.name -> {
+                showDialog(
+                    context = this@MainActivity,
+                    title = "Apakah anda yakin kembali ke halamaan sebelumnya?",
+                    message = "Anda belum menyelesaikan test skrining, apakah anda yakin untuk memeriksa kembali data diri anda dan data pada skrining pertama?",
+                    positiveButtonText = "Yakin",
+                    negativeButtonText = "Tidak Yakin",
+                    isShowPositiveButton = true
+                ) {
+                    mainViewModel.isScreenBack = true
+                    super.onBackPressed()
+                }
             }
         }
-        super.onBackPressed()
     }
 }

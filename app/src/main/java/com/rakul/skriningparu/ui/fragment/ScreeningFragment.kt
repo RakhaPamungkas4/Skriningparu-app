@@ -11,13 +11,16 @@ import androidx.navigation.findNavController
 import com.rakul.skriningparu.data.model.response.ScreeningResponse
 import com.rakul.skriningparu.databinding.FragmentScreeningBinding
 import com.rakul.skriningparu.ui.viewmodel.MainViewModel
+import com.rakul.skriningparu.ui.viewmodel.UserViewModel
 
 class ScreeningFragment : Fragment() {
     private var binding: FragmentScreeningBinding? = null
     private val mainViewModel: MainViewModel by activityViewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
 
     private var index = 0
     private val items = mutableListOf<ScreeningResponse>()
+    private val answers = mutableListOf<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +35,8 @@ class ScreeningFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupObserver()
         setupAction()
+        userViewModel.listFirstAnswers.clear()
+        answers.clear()
         mainViewModel.screenName = ScreeningFragment::class.java.name
     }
 
@@ -39,6 +44,8 @@ class ScreeningFragment : Fragment() {
         mainViewModel.firstScreeningData.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
                 index = 0
+                userViewModel.listFirstAnswers.clear()
+                answers.clear()
                 items.clear()
                 items.addAll(it)
                 binding?.apply {
@@ -56,10 +63,14 @@ class ScreeningFragment : Fragment() {
         binding?.apply {
             inclLayoutAnswer.btnAnswer1.setOnClickListener {
                 index += 1
+                val data = inclLayoutAnswer.btnAnswer1.text.toString()
+                answers.add(data)
                 setupNextPage(index, it)
             }
             inclLayoutAnswer.btnAnswer2.setOnClickListener {
                 index += 1
+                val data = inclLayoutAnswer.btnAnswer2.text.toString()
+                answers.add(data)
                 setupNextPage(index, it)
             }
         }
@@ -72,6 +83,7 @@ class ScreeningFragment : Fragment() {
                 inclLayoutAnswer.btnAnswer1.text = items[index].answer[0]
                 inclLayoutAnswer.btnAnswer2.text = items[index].answer[1]
             } else {
+                userViewModel.listFirstAnswers.addAll(answers)
                 val action =
                     ScreeningFragmentDirections.actionScreeningFragmentToScreeningIdentityFragment()
                 view.findNavController().navigate(action)

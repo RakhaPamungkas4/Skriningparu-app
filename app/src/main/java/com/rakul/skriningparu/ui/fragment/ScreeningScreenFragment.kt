@@ -4,19 +4,32 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.rakul.skriningparu.R
+import com.rakul.skriningparu.data.model.request.IdentityRequest
 import com.rakul.skriningparu.data.model.response.ScreeningResponse
 import com.rakul.skriningparu.databinding.FragmentScreeningScreenBinding
 import com.rakul.skriningparu.ui.viewmodel.MainViewModel
+import com.rakul.skriningparu.ui.viewmodel.UserViewModel
+import com.rakul.skriningparu.utils.dialog.showDialog
+import com.rakul.skriningparu.utils.showLoading
+import com.rakul.skriningparu.utils.showToast
 
 class ScreeningScreenFragment : Fragment() {
     private var binding: FragmentScreeningScreenBinding? = null
-    private val mainViewMode: MainViewModel by activityViewModels()
+    private lateinit var firebaseDatabase: FirebaseDatabase
+    private lateinit var databaseRef: DatabaseReference
+    private val mainViewModel: MainViewModel by activityViewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
 
     private var index = 0
     private var items = mutableListOf<ScreeningResponse>()
@@ -32,12 +45,15 @@ class ScreeningScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding?.pbLoading?.showLoading(false)
+        mainViewModel.screenName = ScreeningScreenFragment::class.java.name
+        setupFirebase()
         setupObserver()
         setupAction()
     }
 
     private fun setupObserver() {
-        mainViewMode.secondScreeningData.observe(viewLifecycleOwner) {
+        mainViewModel.secondScreeningData.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
                 index = 0
                 items.clear()
@@ -54,24 +70,63 @@ class ScreeningScreenFragment : Fragment() {
     private fun setupAction() {
         binding?.apply {
             inclLayoutAnswer.inclLayoutDoubleAnswer.btnAnswer1.setOnClickListener {
-                index += 1
-                setupNextPage()
+                val answer = inclLayoutAnswer.inclLayoutDoubleAnswer.btnAnswer1.text.toString()
+                userViewModel.addUserAnswer(answer)
+                if (index == items.size-1) {
+                    showDialog(
+                        context = requireContext(),
+                        title = "Apakah anda yakin untuk memerika ulang?",
+                        message = "Data yang telah dipilih akan dihapus dan kembali ke soal awal, apakah anda yakin?",
+                        positiveButtonText = "Yakin",
+                        negativeButtonText = "Belum yakin",
+                        isShowPositiveButton = true
+                    ) {
+                        userViewModel.clearListAnswers()
+                        index = 0
+                        setupUi()
+                    }
+                }else{
+                    index += 1
+                    setupUi()
+                }
             }
             inclLayoutAnswer.inclLayoutDoubleAnswer.btnAnswer2.setOnClickListener {
-                index += 1
-                setupNextPage()
+                val answer = inclLayoutAnswer.inclLayoutDoubleAnswer.btnAnswer2.text.toString()
+                userViewModel.addUserAnswer(answer)
+                if (index == items.size-1) {
+                    showDialog(
+                        context = requireContext(),
+                        title = "Apakah anda sudah yakin?",
+                        message = "Data yang diisi sudah benar?",
+                        positiveButtonText = "Yakin",
+                        negativeButtonText = "Belum yakin",
+                        isShowPositiveButton = true
+                    ) {
+                        pbLoading.showLoading(true)
+                        sendDataToFirebase()
+                    }
+                }else{
+                    index += 1
+                    setupUi()
+                }
             }
             inclLayoutAnswer.inclLayoutTripleAnswer.btnAnswer1.setOnClickListener {
                 index += 1
-                setupNextPage()
+                val answer = inclLayoutAnswer.inclLayoutTripleAnswer.btnAnswer1.text.toString()
+                userViewModel.addUserAnswer(answer)
+                setupUi()
             }
             inclLayoutAnswer.inclLayoutTripleAnswer.btnAnswer2.setOnClickListener {
                 index += 1
-                setupNextPage()
+                val answer = inclLayoutAnswer.inclLayoutTripleAnswer.btnAnswer2.text.toString()
+                userViewModel.addUserAnswer(answer)
+                setupUi()
             }
             inclLayoutAnswer.inclLayoutTripleAnswer.btnAnswer3.setOnClickListener {
                 index += 1
-                setupNextPage()
+                val answer = inclLayoutAnswer.inclLayoutTripleAnswer.btnAnswer3.text.toString()
+                userViewModel.addUserAnswer(answer)
+                setupUi()
             }
         }
     }
@@ -116,12 +171,29 @@ class ScreeningScreenFragment : Fragment() {
         }
     }
 
-    private fun setupNextPage() {
+    private fun setupFirebase() {
+        firebaseDatabase = Firebase.database
+        databaseRef = firebaseDatabase.reference.child("user")
+    }
+
+    private fun sendDataToFirebase() {
+        val userUid = userViewModel.userUid
+        val answers = userViewModel.listAnswers
+        databaseRef.child(userUid).child("answers").setValue(answers) { error, _ ->
+            binding?.pbLoading?.showLoading(false)
+            if (error != null) {
+                requireContext().showToast("Failed Send Data")
+            } else {
+                userViewModel.clearListAnswers()
+                // TODO : Go to Screening Result Page
+            }
+        }
+    }
+
+    private fun setupUi() {
         binding?.apply {
             if (index < items.size) {
                 setupLayoutAnswer(items[index])
-            } else {
-                // TODO : Go to Screening Result Page
             }
         }
     }

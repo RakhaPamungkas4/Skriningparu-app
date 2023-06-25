@@ -13,4 +13,6 @@
     <string name="title_personal_data">Identitas Diri</string>
     <string name="action_start">Mulai</string>
     <string name="action_next">Selanjutnya</string>
+    <string name="label_male">Laki laki</string>
+    <string name="label_female">Perempuan</string>
 </resources>
