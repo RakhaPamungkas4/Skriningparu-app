@@ -6,12 +6,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAnswer1"
+        style="@style/BaseButton.Primary"
         android:layout_width="160dp"
         android:layout_height="116dp"
-        android:layout_marginStart="@dimen/dimen_8dp"
-        android:layout_marginEnd="@dimen/dimen_36dp"
+        android:layout_margin="@dimen/dimen_8dp"
         android:text="@string/action_accept"
-        android:textAllCaps="false"
         android:textColor="@color/white"
         app:backgroundTint="@color/blue_sea"
         app:layout_constraintStart_toStartOf="@id/guideline"
@@ -19,11 +18,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAnswer2"
+        style="@style/BaseButton.Primary"
         android:layout_width="160dp"
         android:layout_height="116dp"
-        android:layout_marginEnd="@dimen/dimen_8dp"
+        android:layout_margin="@dimen/dimen_8dp"
         android:text="@string/action_accept"
-        android:textAllCaps="false"
         android:textColor="@color/white"
         app:backgroundTint="@color/blue_aqua"
         app:layout_constraintEnd_toEndOf="@id/guideline"

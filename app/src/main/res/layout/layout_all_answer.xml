@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/inclLayoutDoubleAnswer"
+        layout="@layout/layout_answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible" />
+
+    <include
+        android:id="@+id/inclLayoutTripleAnswer"
+        layout="@layout/layout_three_answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+</LinearLayout>

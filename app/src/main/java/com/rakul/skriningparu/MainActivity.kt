@@ -53,14 +53,14 @@ class MainActivity : AppCompatActivity() {
     private fun getDataFromFirebase() {
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val consentPageData = snapshot.child("consent_page")
-                val firstScreeningPhaseData = snapshot.child("fase_skrining_1")
-                val secondScreeningPhaseData = snapshot.child("fase_skrining_2")
+                val dataResponse1 = snapshot.child("consent_page")
+                val dataResponse2 = snapshot.child("fase_skrining_1")
+                val dataResponse3 = snapshot.child("fase_skrining_2")
 
                 val consentData =
-                    consentPageData.getValue(ConsentResponse::class.java) as ConsentResponse
+                    dataResponse1.getValue(ConsentResponse::class.java) as ConsentResponse
                 val firstScreeningData = mutableListOf<ScreeningResponse>()
-                firstScreeningPhaseData.children.forEach {
+                dataResponse2.children.forEach {
                     val answers = mutableListOf<String>()
                     val title = it.child("title").value.toString()
                     it.child("answer").children.forEach { item ->
@@ -74,8 +74,26 @@ class MainActivity : AppCompatActivity() {
                     )
                 }
 
+                val secondScreeningData = mutableListOf<ScreeningResponse>()
+                dataResponse3.children.forEach {
+                    val answers = mutableListOf<String>()
+                    val title = it.child("title").value.toString()
+                    val image = it.child("image").value.toString()
+                    it.child("answer").children.forEach { item ->
+                        answers.add(item.value.toString())
+                    }
+                    secondScreeningData.add(
+                        ScreeningResponse(
+                            title = title,
+                            image = image,
+                            answer = answers
+                        )
+                    )
+                }
+
                 mainViewModel.addConsentData(consentData)
                 mainViewModel.addFirstScreeningData(firstScreeningData)
+                mainViewModel.addSecondScreeningData(secondScreeningData)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -91,13 +109,15 @@ class MainActivity : AppCompatActivity() {
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        when(mainViewModel.screenName) {
+        when (mainViewModel.screenName) {
             ConsentSheetFragment::class.java.name -> {
                 Toast.makeText(this@MainActivity, "ConsentFragment", Toast.LENGTH_SHORT).show()
             }
+
             ScreeningFragment::class.java.name -> {
                 Toast.makeText(this@MainActivity, "ScreeningFragment", Toast.LENGTH_SHORT).show()
             }
+
             PersonalDataFragment::class.java.name -> {
                 Toast.makeText(this@MainActivity, "PersonalDataFragment", Toast.LENGTH_SHORT).show()
             }

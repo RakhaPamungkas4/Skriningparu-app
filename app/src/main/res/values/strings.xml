@@ -12,4 +12,5 @@
     <string name="title_advance_screening">Screening Lanjutan</string>
     <string name="title_personal_data">Identitas Diri</string>
     <string name="action_start">Mulai</string>
+    <string name="action_next">Selanjutnya</string>
 </resources>
