@@ -17,4 +17,7 @@
     <string name="label_female">Perempuan</string>
     <string name="label_result">Hasil</string>
     <string name="label_feedback">Saran</string>
+    <string name="label_welcome">Lakukan Skrining TB Paru mandiri dengan mudah dan menyenangkan</string>
+    <string name="action_ready_screening">Mulai Skrining</string>
+    <string name="action_boarding">Apa itu TB Paru?</string>
 </resources>

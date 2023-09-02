@@ -1,18 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnStart"
-        style="@style/BaseButton.Primary"
-        android:layout_width="match_parent"
-        android:layout_centerInParent="true"
-        android:layout_marginHorizontal="@dimen/dimen_16dp"
-        android:text="@string/action_start"
-        android:textAllCaps="false"
-        android:textColor="@color/white" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgWelcome"
+        android:layout_width="@dimen/dimens_360dp"
+        android:layout_height="360dp"
+        android:layout_marginStart="@dimen/dimen_32dp"
+        android:layout_marginTop="@dimen/dimen_36dp"
+        android:src="@drawable/img_welcome_screen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLabelWelcome"
+        style="@style/BaseTextView.Lato"
+        android:layout_width="@dimen/dimen_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_24dp"
+        android:text="@string/label_welcome"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size_18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgWelcome" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBoarding"
+        style="@style/BaseButton.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_44dp"
+        android:text="@string/action_boarding"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/neutral_60"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLabelWelcome" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnStartScreening"
+        style="@style/BaseButton.Primary"
+        android:layout_width="@dimen/dimen_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:text="@string/action_ready_screening"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/blue_sea"
+        app:layout_constraintEnd_toEndOf="@id/btnBoarding"
+        app:layout_constraintStart_toStartOf="@id/btnBoarding"
+        app:layout_constraintTop_toBottomOf="@id/btnBoarding" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

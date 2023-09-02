@@ -15,10 +15,12 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.apply {
-            btnStart.setOnClickListener {
-                val intent = Intent(this@HomeActivity, MainActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                }
+            btnBoarding.setOnClickListener {
+                val intent = Intent(this@HomeActivity, WebViewActivity::class.java)
+                startActivity(intent)
+            }
+            btnStartScreening.setOnClickListener {
+                val intent = Intent(this@HomeActivity, MainActivity::class.java)
                 startActivity(intent)
             }
         }
