@@ -19,6 +19,7 @@ import com.rakul.skriningparu.databinding.FragmentScreeningScreenBinding
 import com.rakul.skriningparu.ui.ResultScreeningActivity
 import com.rakul.skriningparu.ui.viewmodel.MainViewModel
 import com.rakul.skriningparu.ui.viewmodel.UserViewModel
+import com.rakul.skriningparu.utils.const.FirebaseChildKey.FORM_SUBTOTAL_KEY_DB
 import com.rakul.skriningparu.utils.dialog.showDialog
 import com.rakul.skriningparu.utils.showLoading
 import com.rakul.skriningparu.utils.showToast
@@ -77,10 +78,10 @@ class ScreeningScreenFragment : Fragment() {
                 if (index == items.size) {
                     showDialog(
                         context = requireContext(),
-                        title = "Apakah anda yakin untuk memeriksa ulang?",
-                        message = "Data yang telah dipilih akan dihapus dan kembali ke soal awal, apakah anda yakin?",
-                        positiveButtonText = "Yakin",
-                        negativeButtonText = "Belum yakin",
+                        title = getString(R.string.title_do_you_want_recheck),
+                        message = getString(R.string.message_are_you_sure_this_reset_data),
+                        positiveButtonText = getString(R.string.action_sure),
+                        negativeButtonText = getString(R.string.action_not_sure),
                         isShowPositiveButton = true
                     ) {
                         userViewModel.clearListAnswers()
@@ -98,10 +99,10 @@ class ScreeningScreenFragment : Fragment() {
                 if (index == items.size) {
                     showDialog(
                         context = requireContext(),
-                        title = "Apakah anda sudah yakin?",
-                        message = "Data yang diisi sudah benar?",
-                        positiveButtonText = "Yakin",
-                        negativeButtonText = "Belum yakin",
+                        title = getString(R.string.title_are_you_sure),
+                        message = getString(R.string.message_are_you_sure_this_data_ok),
+                        positiveButtonText = getString(R.string.action_sure),
+                        negativeButtonText = getString(R.string.action_not_sure),
                         isShowPositiveButton = true
                     ) {
                         pbLoading.showLoading(true)
@@ -189,7 +190,7 @@ class ScreeningScreenFragment : Fragment() {
             if (error != null) {
                 requireContext().showToast("Failed Send Answers Data")
             } else {
-                databaseRef.child(userUid).child("subTotalBobot")
+                databaseRef.child(userUid).child(FORM_SUBTOTAL_KEY_DB)
                     .setValue(subTotalBobot) { errorSubTotal, _ ->
                         if (errorSubTotal != null) {
                             requireContext().showToast("Failed Send Sub Total Data")

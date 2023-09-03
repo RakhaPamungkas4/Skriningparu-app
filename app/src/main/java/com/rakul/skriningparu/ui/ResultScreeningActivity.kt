@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.rakul.skriningparu.HomeActivity
+import com.rakul.skriningparu.R
 import com.rakul.skriningparu.databinding.ActivityResultScreeningBinding
 
 class ResultScreeningActivity : AppCompatActivity() {
@@ -28,8 +29,7 @@ class ResultScreeningActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.apply {
-            tvDescription.text =
-                "Selamat, Hasil Skrining anda menunjukan anda diduga negatif TB paru"
+            tvDescription.text = getString(R.string.label_good_news)
         }
     }
 

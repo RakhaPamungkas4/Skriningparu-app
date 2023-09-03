@@ -23,4 +23,17 @@
     <string name="action_recheck">Periksa Lagi</string>
     <string name="action_sure">Yakin</string>
     <string name="label_validate_data">Apakah anda sudah yakin data yang anda masukan sudah benar?</string>
+    <string name="title_back_to_previous_page">Apakah anda yakin kembali ke halaman sebelumnya?</string>
+    <string name="label_please_finish_this_screening">Anda belum menyelesaikan test skrining, apakah anda yakin untuk memeriksa kembali data diri anda dan data pada skrining pertama?</string>
+    <string name="action_not_sure">Tidak Yakin</string>
+    <string name="title_are_you_sure_exit">Apakah anda yakin keluar?</string>
+    <string name="label_do_you_want_cancel">Anda belum menyelesaikan test skrining, apakah anda yakin untuk membatalkannya?</string>
+    <string name="title_form_not_finish">Form Data Belum Lengkap</string>
+    <string name="message_please_check_data_not_filled">Harap periksa kembali data yang belum diisi dan tidak sesuai</string>
+    <string name="title_do_you_want_recheck">Apakah anda yakin untuk memeriksa ulang?</string>
+    <string name="message_are_you_sure_this_reset_data">Data yang telah dipilih akan dihapus dan kembali ke soal awal, apakah anda yakin?</string>
+    <string name="title_are_you_sure">Apakah anda sudah yakin?</string>
+    <string name="message_are_you_sure_this_data_ok">Data yang diisi sudah benar?</string>
+    <string name="action_done">Selesaikan</string>
+    <string name="label_good_news">Selamat, Hasil Skrining anda menunjukan anda diduga negatif TB paru</string>
 </resources>

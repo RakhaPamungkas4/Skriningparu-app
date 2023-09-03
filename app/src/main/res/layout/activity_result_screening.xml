@@ -25,13 +25,14 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgLabel"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginVertical="@dimen/dimen_32dp"
+        android:layout_width="205dp"
+        android:layout_height="205dp"
+        android:layout_marginTop="@dimen/dimen_32dp"
+        android:src="@drawable/img_result_negatif"
+        app:layout_constraintBottom_toTopOf="@id/tvDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
-        android:src="@drawable/img_positif" />
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvDescription"
@@ -39,56 +40,70 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_48dp"
-        android:layout_marginTop="@dimen/dimen_16dp"
         android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_size_18sp"
+        android:textSize="@dimen/text_size_22sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/btnFinish"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imgLabel"
         tools:text="Selamat, Hasil Skrining anda menunjukan anda diduga negatif TB paru" />
 
-<!--    <com.google.android.material.card.MaterialCardView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="@dimen/dimen_0dp"-->
-<!--        android:layout_margin="@dimen/dimen_16dp"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        app:cardCornerRadius="@dimen/dimen_32dp"-->
-<!--        app:cardElevation="@dimen/dimen_0dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/tvDescription">-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnFinish"
+        style="@style/BaseButton.Primary"
+        android:layout_width="@dimen/dimen_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_36dp"
+        android:text="@string/action_done"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/blue_aqua"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription" />
 
-<!--        <RelativeLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:padding="@dimen/dimen_24dp">-->
+    <!--    <com.google.android.material.card.MaterialCardView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="@dimen/dimen_0dp"-->
+    <!--        android:layout_margin="@dimen/dimen_16dp"-->
+    <!--        android:backgroundTint="@color/white"-->
+    <!--        app:cardCornerRadius="@dimen/dimen_32dp"-->
+    <!--        app:cardElevation="@dimen/dimen_0dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/tvDescription">-->
 
-<!--            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                android:id="@+id/tvUsername"-->
-<!--                style="@style/BaseTextView.Lato"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="@color/text_color"-->
-<!--                android:textSize="@dimen/text_size_18sp"-->
-<!--                android:textStyle="bold"-->
-<!--                tools:text="Hai, Rakha Pamungkas" />-->
+    <!--        <RelativeLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:padding="@dimen/dimen_24dp">-->
 
-<!--            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                android:id="@+id/tvLabelFeedback"-->
-<!--                style="@style/BaseTextView.Lato"-->
-<!--                android:layout_marginTop="@dimen/dimen_6dp"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/tvUsername"-->
-<!--                android:text="@string/label_feedback"-->
-<!--                android:textColor="@color/text_color"-->
-<!--                android:textSize="@dimen/text_size_32sp"-->
-<!--                android:textStyle="bold" />-->
+    <!--            <androidx.appcompat.widget.AppCompatTextView-->
+    <!--                android:id="@+id/tvUsername"-->
+    <!--                style="@style/BaseTextView.Lato"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:textColor="@color/text_color"-->
+    <!--                android:textSize="@dimen/text_size_18sp"-->
+    <!--                android:textStyle="bold"-->
+    <!--                tools:text="Hai, Rakha Pamungkas" />-->
 
-<!--        </RelativeLayout>-->
+    <!--            <androidx.appcompat.widget.AppCompatTextView-->
+    <!--                android:id="@+id/tvLabelFeedback"-->
+    <!--                style="@style/BaseTextView.Lato"-->
+    <!--                android:layout_marginTop="@dimen/dimen_6dp"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_below="@id/tvUsername"-->
+    <!--                android:text="@string/label_feedback"-->
+    <!--                android:textColor="@color/text_color"-->
+    <!--                android:textSize="@dimen/text_size_32sp"-->
+    <!--                android:textStyle="bold" />-->
 
-<!--    </com.google.android.material.card.MaterialCardView>-->
+    <!--        </RelativeLayout>-->
+
+    <!--    </com.google.android.material.card.MaterialCardView>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

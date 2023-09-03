@@ -21,6 +21,14 @@ import com.rakul.skriningparu.ui.fragment.PersonalDataFragment
 import com.rakul.skriningparu.ui.fragment.ScreeningFragment
 import com.rakul.skriningparu.ui.fragment.ScreeningScreenFragment
 import com.rakul.skriningparu.ui.viewmodel.MainViewModel
+import com.rakul.skriningparu.utils.const.FirebaseChildKey.ANSWER_KEY_CHILD
+import com.rakul.skriningparu.utils.const.FirebaseChildKey.BOBOT_KEY_CHILD
+import com.rakul.skriningparu.utils.const.FirebaseChildKey.CONSENT_PAGE_KEY_DB
+import com.rakul.skriningparu.utils.const.FirebaseChildKey.DATA_KEY_PARENT
+import com.rakul.skriningparu.utils.const.FirebaseChildKey.IMAGE_KEY_CHILD
+import com.rakul.skriningparu.utils.const.FirebaseChildKey.SCREENING_PHASE_ONE_KEY_DB
+import com.rakul.skriningparu.utils.const.FirebaseChildKey.SCREENING_PHASE_TWO_KEY_DB
+import com.rakul.skriningparu.utils.const.FirebaseChildKey.TITLE_KEY_CHILD
 import com.rakul.skriningparu.utils.dialog.showDialog
 
 class MainActivity : AppCompatActivity() {
@@ -47,23 +55,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupFirebase() {
         firebaseDatabase = Firebase.database
-        databaseRef = firebaseDatabase.reference.child("data")
+        databaseRef = firebaseDatabase.reference.child(DATA_KEY_PARENT)
     }
 
     private fun getDataFromFirebase() {
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val consentPageData = snapshot.child("consent_page")
-                val firstPhaseScreeningData = snapshot.child("fase_skrining_1")
-                val secondPhaseScreeningData = snapshot.child("fase_skrining_2")
+                val consentPageData = snapshot.child(CONSENT_PAGE_KEY_DB)
+                val firstPhaseScreeningData = snapshot.child(SCREENING_PHASE_ONE_KEY_DB)
+                val secondPhaseScreeningData = snapshot.child(SCREENING_PHASE_TWO_KEY_DB)
 
                 val consentData =
                     consentPageData.getValue(ConsentResponse::class.java) as ConsentResponse
                 val firstScreeningData = mutableListOf<ScreeningResponse>()
                 firstPhaseScreeningData.children.forEach {
                     val answers = mutableListOf<String>()
-                    val title = it.child("title").value.toString()
-                    it.child("answer").children.forEach { item ->
+                    val title = it.child(TITLE_KEY_CHILD).value.toString()
+                    it.child(ANSWER_KEY_CHILD).children.forEach { item ->
                         answers.add(item.value.toString())
                     }
                     firstScreeningData.add(
@@ -78,12 +86,12 @@ class MainActivity : AppCompatActivity() {
                 secondPhaseScreeningData.children.forEach {
                     val answers = mutableListOf<String>()
                     val bobot = mutableListOf<Double>()
-                    val title = it.child("title").value.toString()
-                    val image = it.child("image").value.toString()
-                    it.child("bobot").children.forEach { item ->
+                    val title = it.child(TITLE_KEY_CHILD).value.toString()
+                    val image = it.child(IMAGE_KEY_CHILD).value.toString()
+                    it.child(BOBOT_KEY_CHILD).children.forEach { item ->
                         bobot.add(item.value.toString().toDouble())
                     }
-                    it.child("answer").children.forEach { item ->
+                    it.child(ANSWER_KEY_CHILD).children.forEach { item ->
                         answers.add(item.value.toString())
                     }
                     secondScreeningData.add(
@@ -122,10 +130,10 @@ class MainActivity : AppCompatActivity() {
             ScreeningFragment::class.java.name -> {
                 showDialog(
                     context = this@MainActivity,
-                    title = "Apakah anda yakin keluar?",
-                    message = "Anda belum menyelesaikan test skrining, apakah anda yakin untuk membatalkannya?",
-                    positiveButtonText = "Yakin",
-                    negativeButtonText = "Tidak Yakin",
+                    title = getString(R.string.title_are_you_sure_exit),
+                    message = getString(R.string.label_do_you_want_cancel),
+                    positiveButtonText = getString(R.string.action_sure),
+                    negativeButtonText = getString(R.string.action_not_sure),
                     isShowPositiveButton = true
                 ) {
                     super.onBackPressed()
@@ -139,10 +147,10 @@ class MainActivity : AppCompatActivity() {
             ScreeningScreenFragment::class.java.name -> {
                 showDialog(
                     context = this@MainActivity,
-                    title = "Apakah anda yakin kembali ke halamaan sebelumnya?",
-                    message = "Anda belum menyelesaikan test skrining, apakah anda yakin untuk memeriksa kembali data diri anda dan data pada skrining pertama?",
-                    positiveButtonText = "Yakin",
-                    negativeButtonText = "Tidak Yakin",
+                    title = getString(R.string.title_back_to_previous_page),
+                    message = getString(R.string.label_please_finish_this_screening),
+                    positiveButtonText = getString(R.string.action_sure),
+                    negativeButtonText = getString(R.string.action_not_sure),
                     isShowPositiveButton = true
                 ) {
                     mainViewModel.isScreenBack = true

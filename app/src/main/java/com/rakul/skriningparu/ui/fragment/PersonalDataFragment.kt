@@ -18,6 +18,8 @@ import com.rakul.skriningparu.data.model.request.IdentityRequest
 import com.rakul.skriningparu.databinding.FragmentPersonalDataBinding
 import com.rakul.skriningparu.ui.viewmodel.MainViewModel
 import com.rakul.skriningparu.ui.viewmodel.UserViewModel
+import com.rakul.skriningparu.utils.const.FirebaseChildKey.FORM_DATA_KEY_DB
+import com.rakul.skriningparu.utils.const.FirebaseChildKey.USER_KEY_DB
 import com.rakul.skriningparu.utils.dialog.showDialog
 import com.rakul.skriningparu.utils.showLoading
 import com.rakul.skriningparu.utils.showToast
@@ -63,9 +65,9 @@ class PersonalDataFragment : Fragment() {
                         } else {
                             showDialog(
                                 context = requireContext(),
-                                title = "Form Data Belum Lengkap",
-                                message = "Harap periksa kembali data yang belum diisi dan tidak sesuai",
-                                negativeButtonText = "Periksa Kembali"
+                                title = getString(R.string.title_form_not_finish),
+                                message = getString(R.string.message_please_check_data_not_filled),
+                                negativeButtonText = getString(R.string.action_recheck)
                             )
                         }
                     }
@@ -86,7 +88,7 @@ class PersonalDataFragment : Fragment() {
 
     private fun setupFirebase() {
         firebaseDatabase = Firebase.database
-        databaseRef = firebaseDatabase.reference.child("user")
+        databaseRef = firebaseDatabase.reference.child(USER_KEY_DB)
     }
 
     private fun sendDataToFirebase() {
@@ -104,7 +106,7 @@ class PersonalDataFragment : Fragment() {
             )
 
             val uid = if (mainViewModel.isScreenBack) userViewModel.userUid else getRandomUid()
-            databaseRef.child(uid).child("form_data").setValue(data) { error, _ ->
+            databaseRef.child(uid).child(FORM_DATA_KEY_DB).setValue(data) { error, _ ->
                 binding?.pbLoading?.showLoading(false)
                 if (error != null) {
                     requireContext().showToast("Failed Send Data")
