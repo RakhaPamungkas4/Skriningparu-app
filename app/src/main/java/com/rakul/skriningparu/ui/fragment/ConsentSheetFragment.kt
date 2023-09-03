@@ -38,6 +38,7 @@ class ConsentSheetFragment : Fragment() {
                 if (data.title.isNotEmpty() && data.description.isNotEmpty()) {
                     tvTitle.text = data.title
                     tvDesc.text = data.description.setHtmlHandlersText(true)
+                    cbAgree.visibility = View.VISIBLE
                 }
             }
         }

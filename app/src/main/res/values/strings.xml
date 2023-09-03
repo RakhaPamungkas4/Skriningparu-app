@@ -20,4 +20,7 @@
     <string name="label_welcome">Lakukan Skrining TB Paru mandiri dengan mudah dan menyenangkan</string>
     <string name="action_ready_screening">Mulai Skrining</string>
     <string name="action_boarding">Apa itu TB Paru?</string>
+    <string name="action_recheck">Periksa Lagi</string>
+    <string name="action_sure">Yakin</string>
+    <string name="label_validate_data">Apakah anda sudah yakin data yang anda masukan sudah benar?</string>
 </resources>

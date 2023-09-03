@@ -12,6 +12,7 @@ class UserViewModel : ViewModel() {
     var userUid = ""
     val listAnswers = mutableListOf<String>()
     val listFirstAnswers = mutableListOf<String>() // Use in first screening page
+    var subTotalBobot = 0.0
 
     fun addUserUID(data: String) {
         userUid = data
@@ -27,5 +28,9 @@ class UserViewModel : ViewModel() {
 
     fun clearListAnswers() {
         listAnswers.clear()
+    }
+
+    fun addSubTotalBobot(subTotal: Double) {
+        subTotalBobot = subTotal
     }
 }

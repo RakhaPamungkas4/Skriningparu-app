@@ -53,14 +53,14 @@ class MainActivity : AppCompatActivity() {
     private fun getDataFromFirebase() {
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val dataResponse1 = snapshot.child("consent_page")
-                val dataResponse2 = snapshot.child("fase_skrining_1")
-                val dataResponse3 = snapshot.child("fase_skrining_2")
+                val consentPageData = snapshot.child("consent_page")
+                val firstPhaseScreeningData = snapshot.child("fase_skrining_1")
+                val secondPhaseScreeningData = snapshot.child("fase_skrining_2")
 
                 val consentData =
-                    dataResponse1.getValue(ConsentResponse::class.java) as ConsentResponse
+                    consentPageData.getValue(ConsentResponse::class.java) as ConsentResponse
                 val firstScreeningData = mutableListOf<ScreeningResponse>()
-                dataResponse2.children.forEach {
+                firstPhaseScreeningData.children.forEach {
                     val answers = mutableListOf<String>()
                     val title = it.child("title").value.toString()
                     it.child("answer").children.forEach { item ->
@@ -75,10 +75,14 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 val secondScreeningData = mutableListOf<ScreeningResponse>()
-                dataResponse3.children.forEach {
+                secondPhaseScreeningData.children.forEach {
                     val answers = mutableListOf<String>()
+                    val bobot = mutableListOf<Double>()
                     val title = it.child("title").value.toString()
                     val image = it.child("image").value.toString()
+                    it.child("bobot").children.forEach { item ->
+                        bobot.add(item.value.toString().toDouble())
+                    }
                     it.child("answer").children.forEach { item ->
                         answers.add(item.value.toString())
                     }
@@ -86,6 +90,7 @@ class MainActivity : AppCompatActivity() {
                         ScreeningResponse(
                             title = title,
                             image = image,
+                            bobot = bobot,
                             answer = answers
                         )
                     )

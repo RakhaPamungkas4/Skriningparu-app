@@ -12,8 +12,13 @@ class ResultScreeningActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultScreeningBinding
 
     companion object {
-        fun start(context: Context) {
-            context.startActivity(Intent(context, ResultScreeningActivity::class.java))
+
+        private const val TAG_SUBTOTAL_BOBOT = "TAG_SUBTOTAL_BOBOT"
+
+        fun start(context: Context, subTotalBobot: Double) {
+            context.startActivity(Intent(context, ResultScreeningActivity::class.java).apply {
+                putExtra(TAG_SUBTOTAL_BOBOT, subTotalBobot)
+            })
         }
     }
 
