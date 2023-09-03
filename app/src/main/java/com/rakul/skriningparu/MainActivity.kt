@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         when (mainViewModel.screenName) {
             ConsentSheetFragment::class.java.name -> {
-                Toast.makeText(this@MainActivity, "ConsentFragment", Toast.LENGTH_SHORT).show()
+                super.onBackPressed()
             }
 
             ScreeningFragment::class.java.name -> {

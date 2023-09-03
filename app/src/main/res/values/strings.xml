@@ -35,5 +35,9 @@
     <string name="title_are_you_sure">Apakah anda sudah yakin?</string>
     <string name="message_are_you_sure_this_data_ok">Data yang diisi sudah benar?</string>
     <string name="action_done">Selesaikan</string>
-    <string name="label_good_news">Selamat, Hasil Skrining anda menunjukan anda diduga negatif TB paru</string>
+    <string name="label_good_news">Selamat, Hasil Skrining anda menunjukkan anda (%s) diduga negatif TB paru</string>
+    <string name="label_bad_news">Sayang sekali, Hasil Skrining menunjukkan anda (%s) diduga positif TB paru</string>
+    <string name="message_exit_result">Hasil screening sudah selesai, apakah anda ingin keluar?</string>
+    <string name="action_yes">Iya</string>
+    <string name="action_nope">Tidak</string>
 </resources>

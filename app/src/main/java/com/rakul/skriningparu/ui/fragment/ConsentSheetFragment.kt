@@ -28,6 +28,7 @@ class ConsentSheetFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mainViewModel.screenName = ConsentSheetFragment::class.java.name
         setupObserver()
         setupAction()
     }
@@ -53,6 +54,7 @@ class ConsentSheetFragment : Fragment() {
                 cbAgree.isChecked = false
                 isChecked = false
             }
+            btnBack.setOnClickListener { activity?.onBackPressed() }
             cbAgree.setOnClickListener {
                 isChecked = !isChecked
                 btnAgree.isEnabled = isChecked
