@@ -11,7 +11,7 @@ object FirebaseChildKey {
     const val SCREENING_PHASE_TWO_KEY_DB = "fase_skrining_2"
     const val USER_KEY_DB = "user"
     const val FORM_DATA_KEY_DB = "form_data"
-    const val FORM_SUBTOTAL_KEY_DB = "form_data"
+    const val FORM_SUBTOTAL_KEY_DB = "sub_total_bobot"
 
     const val DATA_KEY_PARENT = "data"
 }
