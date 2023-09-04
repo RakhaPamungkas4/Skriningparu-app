@@ -28,7 +28,7 @@
         android:layout_width="205dp"
         android:layout_height="205dp"
         android:layout_marginTop="@dimen/dimen_32dp"
-        android:src="@drawable/img_result_negatif"
+        tools:src="@drawable/img_result_negatif"
         app:layout_constraintBottom_toTopOf="@id/tvDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

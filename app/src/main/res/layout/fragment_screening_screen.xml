@@ -11,35 +11,29 @@
         android:layout_height="216dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/dimen_32dp"
+        android:layout_marginBottom="@dimen/dimen_16dp"
         android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@id/tvTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        style="@style/BaseTextView.Lato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/dimen_16dp"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:textColor="@color/blue_navy"
+        android:textSize="@dimen/text_size_18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/backgrounds/scenic" />
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_0dp"
-        android:layout_marginVertical="@dimen/dimen_8dp"
-        app:layout_constraintBottom_toTopOf="@id/inclLayoutAnswer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgScreening">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvTitle"
-            style="@style/BaseTextView.Lato"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_0dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="@dimen/dimen_16dp"
-            android:layout_marginTop="@dimen/dimen_16dp"
-            android:textColor="@color/blue_navy"
-            android:textSize="@dimen/text_size_18sp"
-            android:textStyle="bold"
-            tools:text="Apakah anda sering mengalami demam/meriang dalam 2 bulan terakhir?" />
-
-    </androidx.core.widget.NestedScrollView>
+        tools:text="Apakah anda sering mengalami demam/meriang dalam 2 bulan terakhir?" />
 
     <include
         android:id="@+id/inclLayoutAnswer"
@@ -59,5 +53,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

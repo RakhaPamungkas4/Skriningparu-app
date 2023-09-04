@@ -22,7 +22,6 @@ class ResultScreeningActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityResultScreeningBinding
 
-    private var subTotalBobot = 0.0
     private var resultType = ""
 
     companion object {
@@ -30,9 +29,10 @@ class ResultScreeningActivity : AppCompatActivity() {
         private const val TAG_SUBTOTAL_BOBOT = "TAG_SUBTOTAL_BOBOT"
 
         fun start(context: Context, subTotalBobot: Double) {
-            context.startActivity(Intent(context, ResultScreeningActivity::class.java).apply {
+            val intent = Intent(context, ResultScreeningActivity::class.java).apply {
                 putExtra(TAG_SUBTOTAL_BOBOT, subTotalBobot)
-            })
+            }
+            context.startActivity(intent)
         }
     }
 
@@ -41,7 +41,7 @@ class ResultScreeningActivity : AppCompatActivity() {
         binding = ActivityResultScreeningBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        subTotalBobot = intent.getDoubleExtra(TAG_SUBTOTAL_BOBOT, 0.0)
+        val subTotalBobot = intent.getDoubleExtra(TAG_SUBTOTAL_BOBOT, 0.0)
 
         binding.apply {
 
@@ -78,7 +78,7 @@ class ResultScreeningActivity : AppCompatActivity() {
                 imgLabel.setBackgroundResource(R.drawable.img_result_positive)
             }
 
-            if (subTotalBobot > -1.0 || subTotalBobot <= 2.0) {
+            if (subTotalBobot > -1.0 && subTotalBobot <= 0.2) {
                 tvDescription.text = getString(R.string.label_good_news, resultType)
             } else {
                 tvDescription.text = getString(R.string.label_bad_news, resultType)

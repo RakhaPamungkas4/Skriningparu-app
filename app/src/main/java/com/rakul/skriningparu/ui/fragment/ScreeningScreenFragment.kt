@@ -195,7 +195,6 @@ class ScreeningScreenFragment : Fragment() {
                         if (errorSubTotal != null) {
                             requireContext().showToast("Failed Send Sub Total Data")
                         } else {
-                            userViewModel.subTotalBobot = 0.0
                             userViewModel.clearListAnswers()
                             ResultScreeningActivity.start(
                                 requireContext(),
