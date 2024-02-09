@@ -23,4 +23,10 @@
         <item name="backgroundTint">@color/selector_default_color_button</item>
         <item name="android:textColor">@color/selector_default_color_text_button</item>
     </style>
+
+    <style name="BaseButton.Secondary">
+        <item name="backgroundTint">@color/selector_default_color_button</item>
+        <item name="android:textColor">@color/selector_default_color_text_button</item>
+        <item name="android:textSize">@dimen/text_size_10sp</item>
+    </style>
 </resources>

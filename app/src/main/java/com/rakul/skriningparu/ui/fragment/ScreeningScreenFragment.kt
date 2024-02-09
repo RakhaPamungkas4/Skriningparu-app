@@ -1,6 +1,7 @@
 package com.rakul.skriningparu.ui.fragment
 
 import android.os.Bundle
+import android.util.TypedValue.COMPLEX_UNIT_PX
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -138,6 +139,19 @@ class ScreeningScreenFragment : Fragment() {
 
     private fun setupLayoutAnswer(data: ScreeningResponse) {
         binding?.apply {
+            inclLayoutAnswer.inclLayoutTripleAnswer.btnAnswer1.setTextSize(
+                COMPLEX_UNIT_PX,
+                resources.getDimension(R.dimen.text_size_10sp)
+            )
+            inclLayoutAnswer.inclLayoutTripleAnswer.btnAnswer2.setTextSize(
+                COMPLEX_UNIT_PX,
+                resources.getDimension(R.dimen.text_size_10sp)
+            )
+            inclLayoutAnswer.inclLayoutTripleAnswer.btnAnswer3.setTextSize(
+                COMPLEX_UNIT_PX,
+                resources.getDimension(R.dimen.text_size_10sp)
+            )
+
             tvTitle.text = data.title
             Glide.with(requireContext())
                 .load(data.image)
