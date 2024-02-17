@@ -3,6 +3,7 @@ package com.rakul.skriningparu.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.rakul.skriningparu.HomeActivity
 import com.rakul.skriningparu.R
@@ -46,36 +47,54 @@ class ResultScreeningActivity : AppCompatActivity() {
         binding.apply {
 
             // negative section
-            if ((subTotalBobot >= -1.0) || (subTotalBobot <= -0.8)) {
-                resultType = DEFINITELY_NOT_POSITIVE
-                imgLabel.setBackgroundResource(R.drawable.img_result_negatif)
-            } else if ((subTotalBobot > -0.8) && (subTotalBobot <= -0.6)) {
-                resultType = ALMOST_CERTAINLY_NOT_POSITIVE
-                imgLabel.setBackgroundResource(R.drawable.img_result_negatif)
-            } else if ((subTotalBobot > -0.6) && (subTotalBobot <= -0.4)) {
-                resultType = MOST_LIKELY_NOT_POSITIVE
-                imgLabel.setBackgroundResource(R.drawable.img_result_negatif)
-            } else if ((subTotalBobot > -0.4) && (subTotalBobot <= 0.2)) {
-                resultType = PROBABLY_NOT_POSITIVE
-                imgLabel.setBackgroundResource(R.drawable.img_result_negatif)
-            } else if ((subTotalBobot > -0.2) && (subTotalBobot <= 0.2)) {
-                resultType = DONT_KNOW_NOT_POSITIVE
-                imgLabel.setBackgroundResource(R.drawable.img_result_negatif)
+            when {
+                (subTotalBobot > -0.2) && (subTotalBobot <= 0.2) -> {
+                    resultType = DONT_KNOW_NOT_POSITIVE
+                    imgLabel.setBackgroundResource(R.drawable.img_result_negatif)
+                }
+
+                (subTotalBobot > -0.4) && (subTotalBobot <= 0.2) -> {
+                    resultType = PROBABLY_NOT_POSITIVE
+                    imgLabel.setBackgroundResource(R.drawable.img_result_negatif)
+                }
+
+                (subTotalBobot > -0.6) && (subTotalBobot <= -0.4) -> {
+                    resultType = MOST_LIKELY_NOT_POSITIVE
+                    imgLabel.setBackgroundResource(R.drawable.img_result_negatif)
+                }
+
+                (subTotalBobot > -0.8) && (subTotalBobot <= -0.6) -> {
+                    resultType = ALMOST_CERTAINLY_NOT_POSITIVE
+                    imgLabel.setBackgroundResource(R.drawable.img_result_negatif)
+                }
+
+                (subTotalBobot >= -1.0) || (subTotalBobot <= -0.8) -> {
+                    resultType = DEFINITELY_NOT_POSITIVE
+                    imgLabel.setBackgroundResource(R.drawable.img_result_negatif)
+                }
             }
 
             // positive section
-            if ((subTotalBobot > 0.2) && (subTotalBobot < 0.6)) {
-                resultType = MAYBE_POSITIVE
-                imgLabel.setBackgroundResource(R.drawable.img_result_positive)
-            } else if ((subTotalBobot >= 0.6) && (subTotalBobot < 0.8)) {
-                resultType = MOST_LIKELY_POSITIVE
-                imgLabel.setBackgroundResource(R.drawable.img_result_positive)
-            } else if ((subTotalBobot >= 0.8) && (subTotalBobot < 1.0)) {
-                resultType = ALMOST_CERTAIN_POSITIVE
-                imgLabel.setBackgroundResource(R.drawable.img_result_positive)
-            } else if ((subTotalBobot >= 1.0)) {
-                resultType = CERTAIN_POSITIVE
-                imgLabel.setBackgroundResource(R.drawable.img_result_positive)
+            when {
+                (subTotalBobot > 0.2) && (subTotalBobot < 0.6) -> {
+                    resultType = MAYBE_POSITIVE
+                    imgLabel.setBackgroundResource(R.drawable.img_result_positive)
+                }
+
+                (subTotalBobot >= 0.6) && (subTotalBobot < 0.8) -> {
+                    resultType = MOST_LIKELY_POSITIVE
+                    imgLabel.setBackgroundResource(R.drawable.img_result_positive)
+                }
+
+                (subTotalBobot >= 0.8) && (subTotalBobot < 1.0) -> {
+                    resultType = ALMOST_CERTAIN_POSITIVE
+                    imgLabel.setBackgroundResource(R.drawable.img_result_positive)
+                }
+
+                (subTotalBobot >= 1.0) -> {
+                    resultType = CERTAIN_POSITIVE
+                    imgLabel.setBackgroundResource(R.drawable.img_result_positive)
+                }
             }
 
             if (subTotalBobot > -1.0 && subTotalBobot <= 0.2) {
